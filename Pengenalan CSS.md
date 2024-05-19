@@ -119,7 +119,7 @@ Tag `<p>` yang memiliki gaya inline yang diterapkan langsung ke dalam elemen ter
 ```
 
 
-![gambar](inline.jpg)
+![gambar](Inline.jpg)
 
 ### Internal
 
