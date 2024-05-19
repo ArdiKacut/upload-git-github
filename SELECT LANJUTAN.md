@@ -39,7 +39,7 @@ SELECT warna_pemilik FROM desc_mobil WHERE warna="Hitam" OR pemilik="Ibrahim";
 
 ### Hasil
 
-![OR](Or.jpg)
+![OR](OR.jpg)
 
 ### Analisis 
 
