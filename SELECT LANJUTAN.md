@@ -476,7 +476,7 @@ select distinct(pemilik) from desc_mobil;
 ```
 
 ```mysql
-select distinct(harga_rental) from desc_mobil order by harga_rebtal desc;
+select distinct(harga_rental) from desc_mobil order by harga_rental desc;
 ```
 
 ## Hasil
@@ -497,6 +497,153 @@ Digunakan untuk menghasilkan daftar unik dari pemilik mobil yang terdaftar dalam
 
 Memberikan daftar harga rental mobil yang unik dan diurutkan dari yang tertinggi ke terendah, sehingga memudahkan dalam memahami variasi `harga rental` mobil yang ada dalam database.
 
+# ORDER BY & LIMIT
+## Mengurutkan data dari data terkecil 
+### Struktur 
+
+```mysql
+SELECT * FROM nama_tabel ORDER BY nama_kolom ASC;
+```
+
+### Contoh
+
+```mysql
+SELECT * FROM desc_mobil ORDER BY pemilik ASC;
+```
+
+### Hasil
+
+![basdat](data_terkecil.jpg)
+
+### Analisis 
+
+1. **Pengambilan Data:**
+   - `SELECT *` mengambil semua kolom dari tabel `desc_mobil`.
+
+2. **Pengurutan Data:**
+   - `ORDER BY pemilik ASC` mengurutkan hasil berdasarkan kolom `pemilik` secara alfabetis.
+
+3. **Kegunaan:**
+   - Berguna untuk melihat daftar mobil yang diurutkan berdasarkan nama pemilik.
+
+4. **Efisiensi:**
+   - Pengurutan bisa lambat jika tabel besar; indeks pada kolom `pemilik` bisa mempercepatnya.
+   
+### Kesimpulan 
+
+1. **Fungsi Utama:** Mengambil semua data dari tabel `desc_mobil` dan mengurutkannya berdasarkan nama pemilik dalam urutan menaik.
+2. **Keuntungan:** Memudahkan pencarian dan penampilan data mobil berdasarkan pemilik.
+3. **Efisiensi:** Dapat ditingkatkan dengan mengindeks kolom `pemilik` dan hanya memilih kolom yang diperlukan untuk mengurangi beban pemrosesan.
+
+## Mengurutkan data dari data terbesar 
+### Struktur 
+
+```mysql
+SELECT * FROM nama_tabel ORDER BY nama_kolom DESC;
+```
+
+### Contoh
+
+```mysql
+SELECT * FROM desc_mobil ORDER BY pemilik DESC;
+```
+
+### Hasil
+
+![basdat](data_terbesar.jpg)
+
+### Analisis 
+
+- SELECT : Bagian ini berarti memilih semua kolom dari tabel desc_mobil.
+- FROM desc_mobil: Bagian ini menentukan tabel yang akan diambil datanya, yaitu desc_mobil.
+- ORDER BY pemilik DESC: Bagian ini mengurutkan hasil query berdasarkan kolom pemilik dalam urutan menurun.
+
+### Kesimpulan 
+
+Mengambil semua data dari tabel `desc_mobil` dan mengurutkannya berdasarkan kolom pemilik dalam urutan menurun. Ini berguna untuk melihat data dengan urutan dari nilai terbesar ke terkecil di kolom `pemilik`, tetapi kinerjanya dapat terpengaruh jika tabel besar atau kolom memiliki banyak nilai yang sama.
+
+## Limit
+### Struktur 
+
+```mysql
+SELECT * FROM nama_tabel WHERE nama_kolom1 = "nilai_kolom1" ORDER BY nama_kolom2  ASC LIMIT nilai_kolom2;
+```
+
+
+### Contoh
+
+```mysql
+SELECT * FROM desc_mobil WHERE warna = "Hitam" ORDER BY harga_rental  ASC LIMIT 2;
+```
+
+### Hasil
+
+![basdat](limit.jpg)
+
+### Analisis 
+
+1. **Tabel**: Query ini mengambil data dari tabel `desc_mobil`.
+
+2. **Kondisi**: Filter yang digunakan adalah `warna = "Hitam"`, yang berarti hanya mobil dengan warna hitam yang akan diambil datanya.
+
+3. **Pengurutan**: Data yang sudah difilter akan diurutkan berdasarkan kolom `harga_rental` secara ascending (dari yang termurah ke yang termahal).
+
+4. **Pembatasan Hasil**: Query ini hanya mengambil dua baris pertama dari hasil yang sudah difilter dan diurutkan tersebut (`LIMIT 2`).
+
+### Kesimpulan 
+
+Query ini mencari dua mobil berwarna hitam dengan harga rental termurah dari tabel `desc_mobil`.
+
+# DISTINCT
+## Struktur 
+
+```mysql
+SELECT DISTINCT(nama_kolom) FROM nama_tabel;
+```
+
+```mysql
+SELECT DISTINCT(nama_kolom) FROM nama_tabel ORDER BY nama_kolom desc;
+```
+
+## Contoh 
+
+```mysql
+SELECT DISTINCT(pemilik) FROM desc_mobil;
+```
+
+```mysql
+SELECT DISTINCT(harga_rental) FROM desc_mobil ORDER BY harga_rental desc;
+```
+
+## Hasil
+
+![basdat](distinct1.jpg)
+
+![basdat](distinct2.jpg)
+
+## Analisis 
+
+1. **Tujuan**: Perintah ini bertujuan untuk mengidentifikasi semua pemilik yang berbeda dari data mobil yang terdapat dalam tabel `desc_mobil`.
+
+2. **Fungsi DISTINCT**: Kata kunci `DISTINCT` digunakan untuk memastikan bahwa hasil yang diambil tidak mengandung duplikat. Dengan kata lain, setiap pemilik yang muncul lebih dari sekali dalam tabel akan hanya muncul sekali dalam hasil.
+
+3. **Kolom yang Dipilih**: Hanya kolom `pemilik` yang dipilih dalam query ini. Tidak ada kolom lain yang diambil.
+
+4. **Penggunaan**: Query semacam ini berguna untuk menganalisis atau melaporkan data unik terkait pemilik mobil, misalnya untuk membuat daftar pemilik tanpa ada pengulangan nama.
+
+5. **Konteks**: Dalam konteks basis data yang lebih luas, query ini bisa digunakan untuk memahami distribusi kepemilikan mobil, misalnya untuk analisis pelanggan atau pengguna jasa.
+---------------------------------
+1. **SELECT DISTINCT(harga_rental)**: Bagian ini memilih harga rental (`harga_rental`) dari tabel `desc_mobil` dan memastikan bahwa setiap nilai harga yang diambil adalah unik, tanpa ada duplikasi.
+
+2. **FROM desc_mobil**: Bagian ini menunjukkan tabel dari mana data diambil, yaitu `desc_mobil`.
+
+3. **ORDER BY harga_rental desc**: Bagian ini mengurutkan hasil yang diambil berdasarkan nilai `harga_rental` secara menurun (dari yang tertinggi ke yang terendah).
+
+## Kesimpulan 
+ 
+`SELECT DISTINCT(pemilik) FROM desc_mobil;` berfungsi untuk mengambil daftar unik dari semua pemilik yang tercatat dalam tabel `desc_mobil`, memastikan bahwa setiap pemilik hanya muncul sekali dalam hasil.
+
+bertujuan untuk menghasilkan daftar harga rental mobil yang unik dari tabel `desc_mobil`, disusun secara menurun dari harga tertinggi ke terendah. Hal ini bermanfaat untuk analisis harga dan pemahaman rentang harga yang tersedia dalam data rental mobil.
 # CONCAT, CONCAT_WS, AS
 ## Menggabungkan kolom tanpa pemisah
 ### Struktur 
