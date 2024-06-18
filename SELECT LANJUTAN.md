@@ -102,7 +102,7 @@ Mengambil semua data mobil dari tabel `desc_mobil` yang memiliki harga rental ku
 ## =>
 ### Struktur 
 
-```
+```mysql
 SELECT * FROM nama_tabel WHERE nama_kolom => nilai_kolom;
 ```
 
@@ -160,7 +160,7 @@ SELECT nama_kolom1 FROM nama_tabel WHERE nama_kolom2;
 
 ## Contoh
 
-```
+```mysql
 SELECT nama_asli FROM akun where id_akun=1;
 ```
 
