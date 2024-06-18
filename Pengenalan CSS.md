@@ -305,7 +305,9 @@ h1 {
 ## Text align
 ### Penjelasan 
 
+- `.oi` adalah selector yang menunjuk ke elemen HTML yang memiliki kelas oi.
 
+- `text-align: center;` adalah properti dan nilai CSS yang mengatur perataan teks di dalam elemen tersebut agar berada di tengah.
 
 ### Kode Program 
 
@@ -320,7 +322,7 @@ h1 {
 
 ### Kesimpulan 
 
-
+`.oi { text-align: center; }` digunakan untuk meratakan teks di tengah secara horizontal pada elemen HTML yang memiliki kelas `oi`.
 
 ## Text decoration 
 ### Underline
@@ -716,6 +718,7 @@ Menentukan gaya teks untuk elemen dengan kelas `.pouu`. Dalam program ini, teks 
 ![Font](font_weight.jpg)
 
 ### Kesimpulan
+
 `font-weight: bold;`, teks dalam elemen tersebut akan memiliki gaya huruf tebal.
 
 ## Font-family justify
@@ -725,7 +728,7 @@ Mengatur tampilan teks dengan menggunakan `font-family:Courier New;`. Dengan men
 
 ### Kode Program 
 
-```
+```css
 .pouuuu {
     font-family: Courier New;
 }
@@ -833,7 +836,7 @@ Gaya untuk elemen dengan kelas `.cuy`, mengatur tampilan latar belakang, lebar, 
 ### Padding-bottom
 #### Penjelasan 
 
-elemen yang memiliki kelas `.cuy` akan memiliki tampilan dengan latar belakang putih, lebar 70 piksel, tinggi 20 piksel, tanpa border, dan memiliki ruang tambahan di bagian bawah sebesar 45 piksel.
+Elemen yang memiliki kelas `.cuy` akan memiliki tampilan dengan latar belakang putih, lebar 70 piksel, tinggi 20 piksel, tanpa border, dan memiliki ruang tambahan di bagian bawah sebesar 45 piksel.
 
 #### Kode Program
 
