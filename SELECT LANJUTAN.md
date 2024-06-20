@@ -712,7 +712,7 @@ SELECT CONCAT_WS("+",pemilik, peminjam) AS COLLAB FROM desc_mobil;
 
 ### Hasil
 
-![AS](as.jpg)
+![AS](As.jpg)
 
 ### Analisis 
 
