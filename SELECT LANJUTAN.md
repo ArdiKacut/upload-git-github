@@ -170,11 +170,13 @@ SELECT nama_asli FROM akun where id_akun=1;
 
 ## Analisis 
 
+- `SELECT`: Klausa yang digunakan untuk memilih data dari tabel.
 
+- `nama_asli`: Kolom yang ingin diambil datanya.
 
-## Kesimpulan 
+- `FROM akun`: Menentukan tabel akun sebagai sumber data.
 
-
+- `WHERE id_akun=1`: Kondisi yang harus dipenuhi untuk mengambil data, yaitu id_akun harus bernilai 1.
 
 # IN
 ## IN
@@ -972,3 +974,264 @@ Menghitung rata-rata harga rental dari tabel `daftar_mobil` dan memberikan hasil
 ### Kesimpulan 
 
 Kesimpulannya, memberikan informasi tentang rata-rata harga rental mobil dari tabel `daftar_mobil`, yang dapat digunakan untuk analisis biaya sewa mobil secara keseluruhan.
+
+# GROUP BY AND HAVING
+
+## 1. Tampilkan jumlah data mobil dan kelompok kan berdasarkan warna nya sesuai dengan tabel mobil kalian.
+### Struktur 
+
+```mysql
+select nama_kolom,COUNT(nama_kolom) AS nama_sementara FROM nama_tabel GROUP BY nama_kolom;
+```
+
+### Contoh
+
+```mysql
+select warna,COUNT(id_pelanggan) AS Jumlah_Data_Mobil FROM desc_mobil GROUP BY warna;
+```
+
+### Hasil
+
+![Tampilkan jumlah data](tampilkan_jumlah.jpg)
+
+### Analisis 
+
+1. **Fungsi Query:**
+   - Mengelompokkan data mobil berdasarkan warna.
+   - Menghitung jumlah entri pelanggan untuk setiap warna mobil.
+
+2. **Komponen Utama:**
+   - `SELECT warna`: Memilih kolom `warna`.
+   - `COUNT(id_pelanggan) AS Jumlah_Data_Mobil`: Menghitung jumlah data untuk setiap warna.
+   - `FROM desc_mobil`: Mengambil data dari tabel `desc_mobil`.
+   - `GROUP BY warna`: Mengelompokkan hasil berdasarkan warna.
+
+3. **Tujuan:**
+   - Mengetahui jumlah mobil untuk setiap warna yang ada di dataset.
+
+4. **Kegunaan Hasil:**
+   - Mengetahui distribusi warna mobil.
+   - Mengidentifikasi warna mobil yang paling populer dan paling jarang.
+   - Membantu dalam keputusan manajemen stok dan strategi pemasaran berdasarkan preferensi warna pelanggan.
+
+### Kesimpulan 
+
+Memberikan wawasan berharga untuk pengambilan keputusan bisnis terkait distribusi warna mobil, preferensi pelanggan, dan strategi pemasaran serta manajemen stok.
+
+## 2. Berdasarkan query ini tampilkan yang lebih BESAR dari 3 atau sama dengan 3 pemilik mobil nya
+### Struktur 
+
+```mysql
+select nama_kolom,COUNT(nama_kolom) AS nama_sementara from nama_tabel GROUP BY nama_kolom HAVING COUNT(nama_kolom) >= nilai_kolom;
+```
+
+### Contoh
+
+```mysql
+select pemilik,COUNT(id_pelanggan) AS jumlah_mobil from desc_mobil GROUP BY pemilik HAVING COUNT(id_pelanggan) >= 2;
+```
+
+### Hasil
+
+![Berdasarkan query](berdasarkan_query.jpg)
+
+### Analisis 
+
+1. **Fungsi Query:**
+   - Mengidentifikasi pemilik yang memiliki dua mobil atau lebih.
+
+2. **Komponen Utama:**
+   - `SELECT pemilik`: Memilih kolom pemilik.
+   - `COUNT(id_pelanggan) AS jumlah_mobil`: Menghitung jumlah mobil per pemilik.
+   - `GROUP BY pemilik`: Mengelompokkan data berdasarkan pemilik.
+   - `HAVING COUNT(id_pelanggan) >= 2`: Menyaring hasil untuk pemilik dengan minimal dua mobil.
+
+3. **Tujuan:**
+   - Menemukan dan menghitung pemilik yang memiliki lebih dari satu mobil.
+
+### Kesimpulan 
+
+Query ini membantu mengidentifikasi pemilik yang memiliki setidaknya dua mobil, memberikan wawasan tentang pola kepemilikan kendaraan yang lebih dari satu oleh individu atau entitas tertentu dalam dataset.
+
+## 3. Tampilkan semua pemilik dengan jumlah mobilnya yang memiliki atau sama dengan 3 mobil
+### Struktur 
+
+```mysql
+SELECT nama_kolom,COUNT(nama_kolom) AS nama_sementara FROM nama_tabel GROUP BY nama_kolom;
+```
+
+### Contoh
+
+```mysql
+SELECT pemilik, 
+COUNT(id_pelanggan) AS jumlah_mobil 
+FROM desc_mobil GROUP BY pemilik;
+```
+
+### Hasil 
+
+![Tampilkan semua](tampilkan_semua.jpg)
+
+### Analisis 
+
+1. **Fungsi Query:**
+   - Mengelompokkan data berdasarkan pemilik dan menghitung jumlah mobil yang dimiliki oleh setiap pemilik.
+
+2. **Komponen Utama:**
+   - `SELECT pemilik`: Memilih kolom pemilik.
+   - `COUNT(id_pelanggan) AS jumlah_mobil`: Menghitung jumlah entri (mobil) yang dimiliki oleh setiap pemilik.
+   - `FROM desc_mobil`: Menunjukkan tabel sumber data.
+   - `GROUP BY pemilik`: Mengelompokkan hasil berdasarkan pemilik.
+
+3. **Tujuan:**
+   - Mengetahui jumlah mobil yang dimiliki oleh setiap pemilik dalam dataset.
+
+### Kesimpulan 
+
+Query ini memberikan informasi tentang jumlah mobil yang dimiliki oleh masing-masing pemilik, membantu memahami distribusi kepemilikan mobil dalam dataset.
+
+## 4. Berdasarkan query yang ada pada praktikum 5 bagian 7 tampilkan data pada table mobil dengan mengelompokkan berdasarkan pemiliknya.hitung menggunakan sum total pendapatan pemilik berdasarkan harga rental
+### Struktur 
+
+```mysql
+select nama_kolom,SUM(nama_kolom) AS nama_sementara from nama_tabel GROUP BY nama_kolom;
+```
+
+### Contoh
+
+```mysql
+select pemilik,SUM(harga_rental) AS jumlah_pendapatan from desc_mobil GROUP BY pemilik;
+```
+
+### Hasil
+
+![Hitung menggunakan](hitung_menggunakan.jpg)
+
+### Analisis 
+
+1. **Fungsi Query:**
+   - Mengelompokkan data berdasarkan pemilik dan menghitung total pendapatan dari harga rental untuk setiap pemilik.
+
+2. **Komponen Utama:**
+   - `SELECT pemilik`: Memilih kolom pemilik.
+   - `SUM(harga_rental) AS jumlah_pendapatan`: Menjumlahkan nilai `harga_rental` untuk setiap pemilik dan memberikan alias hasil sebagai `jumlah_pendapatan`.
+   - `FROM desc_mobil`: Menunjukkan tabel sumber data.
+   - `GROUP BY pemilik`: Mengelompokkan hasil berdasarkan pemilik.
+
+3. **Tujuan:**
+   - Mengetahui total pendapatan dari rental mobil yang diperoleh oleh setiap pemilik dalam dataset.
+
+### Kesimpulan 
+
+Query ini memberikan informasi tentang total pendapatan yang diperoleh setiap pemilik dari rental mobil, membantu memahami kontribusi pendapatan per pemilik dalam dataset.
+
+## 5. Berdasarkan praktikum 5 query no 8 tampilkan jumlah pemasukan pemilik berdasarkan harga rental kelompokkan berdasarkan pemiliknya dan seleksi yang total pemasukannya atau harga rentalnya mencapai lebih besar atau sama dengan 300k
+### Struktur 
+
+```mysql
+select nama_kolom,SUM(nama_kolom) AS nama_sementara from nama_tabel GROUP BY nama_kolom HAVING SUM(nama_kolom) >= nilai_kolom;
+```
+
+### Contoh
+
+```mysql
+select pemilik,SUM(harga_rental) AS jumlah_pemasukan from desc_mobil GROUP BY pemilik HAVING SUM(harga_rental) >= 300000;
+```
+
+### Hasil
+
+![Berdasarkan praktikum](berdasarkan_praktikum.jpg)
+
+### Analisis 
+
+1. **Fungsi Query:**
+   - Mengelompokkan data berdasarkan pemilik.
+   - Menghitung total pemasukan dari harga rental untuk setiap pemilik.
+   - Memfilter hanya pemilik yang memiliki total pemasukan dari rental mobil minimal 300,000.
+
+2. **Komponen Utama:**
+   - `SELECT pemilik`: Memilih kolom `pemilik`.
+   - `SUM(harga_rental) AS jumlah_pemasukan`: Menghitung total harga rental untuk setiap pemilik dan memberikan alias sebagai `jumlah_pemasukan`.
+   - `FROM desc_mobil`: Menunjukkan tabel sumber data.
+   - `GROUP BY pemilik`: Mengelompokkan hasil berdasarkan pemilik.
+   - `HAVING SUM(harga_rental) >= 300000`: Mengaplikasikan filter untuk hanya menampilkan hasil yang memiliki total pemasukan minimal 300,000.
+
+3. **Tujuan:**
+   - Mengidentifikasi pemilik yang memiliki pemasukan dari rental mobil minimal 300,000 dalam dataset.
+
+### Kesimpulan 
+
+Query ini digunakan untuk menemukan dan menampilkan pemilik mobil yang memiliki kontribusi pemasukan yang signifikan dari aktivitas rental, yaitu minimal 300,000. Hal ini membantu dalam mengidentifikasi pemilik yang memberikan kontribusi besar terhadap pendapatan rental mobil secara keseluruhan.
+
+## 6. Berdasarkan praktikum 6 no 12 tampilkan rata rata pemasukan pemilik mobil kelompokkan berdasarkan pemiliknya
+### Struktur 
+
+```mysql
+select nama_kolom,AVG(nama_kolom) AS nama_sementara from nama_tabel GROUP BY nama_kolom;
+```
+
+### Contoh
+
+```mysql
+select pemilik,AVG(harga_rental) AS rata_pemasukam from desc_mobil GROUP BY pemilik;
+```
+
+### Hasil
+
+![berdasarkan](berdasarkan.jpg)
+
+### Analisis 
+
+1. **Fungsi Query:**
+   - Mengelompokkan data berdasarkan pemilik dan menghitung rata-rata harga rental mobil untuk setiap pemilik.
+
+2. **Komponen Utama:**
+   - `SELECT pemilik`: Memilih kolom pemilik.
+   - `AVG(harga_rental) AS rata_pemasukan`: Menghitung rata-rata nilai `harga_rental` untuk setiap pemilik dan memberikan alias hasil sebagai `rata_pemasukan`.
+   - `FROM desc_mobil`: Menunjukkan tabel sumber data.
+   - `GROUP BY pemilik`: Mengelompokkan hasil berdasarkan pemilik.
+
+3. **Tujuan:**
+   - Mengetahui rata-rata pendapatan yang diperoleh dari harga rental mobil untuk setiap pemilik dalam dataset.
+
+### Kesimpulan
+
+Query ini memberikan informasi tentang rata-rata pendapatan yang diperoleh dari harga rental mobil per pemilik, memberikan wawasan tentang performa rata-rata setiap pemilik dalam hal pendapatan dari rental mobil dalam dataset.
+
+## 7. Berdasarkan praktikum 5 no 16 tampilkan pemasukan terbesar dan pemasukan terkecil kelompokkan berdasarkan pemiliknya dan seleksi data pemilik yg tampil atau memiliki jumlah mobil lebih besar dari 1
+### Struktur 
+
+```mysql
+select nama_kolom,MAX(nama_kolom) AS nama_sementara,MIN(nama_kolom) AS nama_sementara from nama_tabel GROUP BY nama_kolom HAVING COUNT(nama_kolom) > nilai_kolom;
+```
+
+### Contoh
+
+```mysql
+select pemilik,MAX(harga_rental) AS Pemasukan_Terbesar ,MIN(harga_rental) AS pemasukan_terkecil from desc_mobil GROUP BY pemilik HAVING COUNT(harga_rental) > 1;
+```
+
+### Hasil
+
+![Berdasarkan](seleksi_data.jpg)
+
+### Analisis 
+
+1. **Fungsi Query:**
+   - Mengelompokkan data berdasarkan pemilik.
+   - Menghitung nilai maksimum dan minimum dari kolom `harga_rental` untuk setiap pemilik yang memiliki lebih dari satu entri mobil.
+
+2. **Komponen Utama:**
+   - `SELECT pemilik`: Memilih kolom `pemilik`.
+   - `MAX(harga_rental) AS Pemasukan_Terbesar`: Menghitung nilai maksimum dari harga rental mobil untuk setiap pemilik.
+   - `MIN(harga_rental) AS Pemasukan_Terkecil`: Menghitung nilai minimum dari harga rental mobil untuk setiap pemilik.
+   - `FROM desc_mobil`: Menunjukkan sumber data dari tabel `desc_mobil`.
+   - `GROUP BY pemilik`: Mengelompokkan hasil berdasarkan kolom `pemilik`.
+   - `HAVING COUNT(harga_rental) > 1`: Mengaplikasikan kondisi hanya pada pemilik yang memiliki lebih dari satu entri mobil dalam dataset.
+
+3. **Tujuan:**
+   - Menemukan pemilik mobil yang memiliki lebih dari satu entri dalam data, dan menampilkan harga rental terbesar dan terkecil untuk setiap pemilik tersebut.
+
+### Kesimpulan
+
+Query ini memberikan wawasan tentang rentang harga rental mobil yang dimiliki oleh setiap pemilik yang memiliki lebih dari satu entri dalam dataset `desc_mobil`. Informasi ini dapat berguna untuk analisis keuangan atau evaluasi performa rental mobil dari masing-masing pemilik.
